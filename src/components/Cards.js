@@ -1,7 +1,6 @@
 import React from "react";
 import "./Cards.scss";
 import CardItem from "./CardItem";
-// import VideoModal from "./pages/video.component";
 
 function Cards() {
   return (
