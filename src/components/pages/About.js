@@ -3,43 +3,43 @@ import "./About.css";
 
 const services = [
   {
-    icon: "🎨",
-    title: "Brand Identity",
-    desc: "Logos, palettes & typography that make your brand unforgettable.",
+    icon: "⚛️",
+    title: "Frontend Development",
+    desc: "Modern React applications with clean architecture and reusable components.",
   },
   {
-    icon: "🖥️",
-    title: "UI / UX Design",
-    desc: "Clean, intuitive interfaces built around real user needs.",
+    icon: "🧠",
+    title: "System Design",
+    desc: "Scalable frontend structures and maintainable codebases for complex apps.",
   },
   {
-    icon: "📸",
-    title: "Photography",
-    desc: "Capturing moments and stories with a creative eye.",
+    icon: "🔗",
+    title: "API Integration",
+    desc: "Connecting frontend systems with backend services efficiently.",
   },
   {
-    icon: "✏️",
-    title: "Illustration",
-    desc: "Custom illustrations that bring ideas to life.",
+    icon: "⚡",
+    title: "Performance Optimization",
+    desc: "Improving speed, responsiveness, and user experience.",
   },
   {
-    icon: "🎬",
-    title: "Motion & Video",
-    desc: "Dynamic motion graphics and video editing for any medium.",
+    icon: "🧩",
+    title: "Component Libraries",
+    desc: "Building reusable UI systems and design consistency.",
   },
   {
-    icon: "📐",
-    title: "Print Design",
-    desc: "Posters, brochures and packaging with precision and style.",
+    icon: "🚀",
+    title: "Product Development",
+    desc: "From idea to production-ready web applications.",
   },
 ];
 
 const skills = [
-  { label: "Adobe Photoshop", pct: 92 },
-  { label: "Adobe Illustrator", pct: 88 },
-  { label: "Figma / UI Design", pct: 85 },
-  { label: "Photography", pct: 80 },
-  { label: "Motion Graphics", pct: 74 },
+  { label: "React / Frontend", pct: 90 },
+  { label: "JavaScript / TypeScript", pct: 88 },
+  { label: "UI Architecture", pct: 85 },
+  { label: "API Integration", pct: 82 },
+  { label: "Performance Optimization", pct: 78 },
 ];
 
 function About() {
@@ -49,16 +49,23 @@ function About() {
       <section className="about-hero">
         <div className="about-hero-text">
           <h1>
-            Creative <span>Designer</span>
+            Full Stack <span>Engineer</span>
           </h1>
           <p>
-            I'm Chris — a multidisciplinary designer based in Greece with a
-            passion for beautiful visuals, thoughtful branding, and compelling
-            storytelling. I collaborate with clients worldwide to craft work
-            that resonates.
+            I'm Chris — a Full Stack Engineer based in Greece, specializing in
+            modern web applications with React. I build scalable,
+            high-performance interfaces and focus on clean architecture,
+            reusable components, and intuitive user experiences.
+            <br />
+            <br />
+            I’ve worked on complex business applications involving form
+            builders, dynamic data flows, and enterprise-level frontend systems.
+            My goal is to deliver products that are reliable, fast, and easy to
+            use.
           </p>
         </div>
-        <div className="about-avatar-placeholder">🎨</div>
+
+        <div className="about-avatar-placeholder">💻</div>
       </section>
 
       {/* Services */}
