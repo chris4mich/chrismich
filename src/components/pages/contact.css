@@ -84,7 +84,7 @@
 .contact-submit-btn {
   margin-top: 4px;
   padding: 14px;
-  background: #6366f1;
+  background: #424242;
   color: #fff;
   font-size: 1rem;
   font-weight: 600;
@@ -98,7 +98,7 @@
 }
 
 .contact-submit-btn:hover {
-  background: #4f46e5;
+  background: #757575;
 }
 
 .contact-submit-btn:active {

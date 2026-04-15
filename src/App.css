@@ -7,8 +7,6 @@
   font-family: "Inter", "PT Sans", sans-serif;
 }
 
-
-
 .about {
   background-position: center;
   background-size: cover;
@@ -29,4 +27,12 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
+}
+
+@media (min-width: 769px) {
+  html {
+    overflow: inherit;
+    scrollbar-color: rgb(0, 0, 0) rgb(97, 97, 97);
+    scrollbar-width: thin;
+  }
 }

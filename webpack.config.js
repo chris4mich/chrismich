@@ -7,7 +7,7 @@ module.exports = {
   },
   devServer: {
     port: 3010,
-    watchContentBase: true,
+    watchFiles: ["src/**/*", "public/**/*"],
   },
   module: {
     rules: [
@@ -18,6 +18,30 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              api: "modern",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp)$/i,
+        type: "asset/resource",
+      },
     ],
+  },
+  resolve: {
+    extensions: [".js", ".jsx"],
   },
 };
