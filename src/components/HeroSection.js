@@ -4,7 +4,7 @@ import useDeviceMotionEffect from "../hooks/useDeviceMotionEffect";
 import "./HeroSection.css";
 
 function HeroSection() {
-  const { canPrompt, requestAccess, targetRef } = useDeviceMotionEffect();
+  const { targetRef } = useDeviceMotionEffect();
 
   return (
     <div className="hero-container" ref={targetRef}>
@@ -40,15 +40,6 @@ function HeroSection() {
             Start Project
           </Link>
         </div>
-        {canPrompt && (
-          <button
-            className="hero-motion-button"
-            type="button"
-            onClick={requestAccess}
-          >
-            Enable Motion Effect
-          </button>
-        )}
       </div>
 
       <div className="hero-panel" aria-hidden="true">

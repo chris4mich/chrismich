@@ -1,17 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-
-function isMobileDevice() {
-  if (typeof window === "undefined" || typeof navigator === "undefined") {
-    return false;
-  }
-
-  return (
-    window.matchMedia("(pointer: coarse)").matches ||
-    /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
-  );
-}
 
 function prefersReducedMotion() {
   if (typeof window === "undefined") {
@@ -35,13 +24,9 @@ export default function useDeviceMotionEffect() {
   const modeRef = useRef(null);
   const targetMotionRef = useRef({ x: 0, y: 0, strength: 0 });
   const currentMotionRef = useRef({ x: 0, y: 0, strength: 0 });
-  const [status, setStatus] = useState("idle");
-  const [canPrompt, setCanPrompt] = useState(false);
 
   useEffect(() => {
-    setCanPrompt(
-      isMobileDevice() && supportsDeviceMotion() && !prefersReducedMotion(),
-    );
+    enableListeners();
 
     return () => {
       if (rafRef.current) {
@@ -134,10 +119,20 @@ export default function useDeviceMotionEffect() {
       return;
     }
 
-    if ("DeviceMotionEvent" in window) {
+    if (typeof window === "undefined" || !supportsDeviceMotion()) {
+      return;
+    }
+
+    if (
+      "DeviceMotionEvent" in window &&
+      typeof window.DeviceMotionEvent.requestPermission !== "function"
+    ) {
       modeRef.current = "devicemotion";
       window.addEventListener("devicemotion", handleMotion, { passive: true });
-    } else if ("DeviceOrientationEvent" in window) {
+    } else if (
+      "DeviceOrientationEvent" in window &&
+      typeof window.DeviceOrientationEvent.requestPermission !== "function"
+    ) {
       modeRef.current = "deviceorientation";
       window.addEventListener("deviceorientation", handleOrientation, {
         passive: true,
@@ -147,49 +142,9 @@ export default function useDeviceMotionEffect() {
     if (targetRef.current) {
       targetRef.current.dataset.motionEnabled = "true";
     }
-
-    setStatus("enabled");
-    setCanPrompt(false);
-  };
-
-  const requestAccess = async () => {
-    if (!isMobileDevice() || !supportsDeviceMotion() || prefersReducedMotion()) {
-      setStatus("unsupported");
-      setCanPrompt(false);
-      return;
-    }
-
-    try {
-      const MotionEvent = window.DeviceMotionEvent;
-      const OrientationEvent = window.DeviceOrientationEvent;
-      let permission = "granted";
-
-      if (MotionEvent && typeof MotionEvent.requestPermission === "function") {
-        permission = await MotionEvent.requestPermission();
-      } else if (
-        OrientationEvent &&
-        typeof OrientationEvent.requestPermission === "function"
-      ) {
-        permission = await OrientationEvent.requestPermission();
-      }
-
-      if (permission === "granted") {
-        enableListeners();
-      } else {
-        setStatus("denied");
-        setCanPrompt(false);
-      }
-    } catch (error) {
-      setStatus("unsupported");
-      setCanPrompt(false);
-    }
   };
 
   return {
-    canPrompt,
-    isEnabled: status === "enabled",
-    requestAccess,
-    status,
     targetRef,
   };
 }
