@@ -3,6 +3,7 @@
   background: #838383;
   min-height: 100vh;
   padding: 80px 20px;
+  overflow-x: hidden;
 }
 
 /* Hero banner */
@@ -162,21 +163,32 @@
 /* Responsive */
 @media (max-width: 768px) {
   .about-page {
-    padding: 60px 16px;
+    padding: 48px 16px;
   }
 
   .about-hero {
     grid-template-columns: 1fr;
     gap: 32px;
     margin-bottom: 48px;
+    text-align: center;
   }
 
   .about-hero-text h1 {
     font-size: 2.2rem;
   }
 
+  .about-hero-text p {
+    font-size: 1rem;
+  }
+
+  .about-avatar-placeholder {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
   .services-grid {
     grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
   .about-services,
@@ -187,7 +199,7 @@
 
 @media (max-width: 480px) {
   .about-page {
-    padding: 40px 12px;
+    padding: 36px 14px;
   }
 
   .about-hero-text h1 {
@@ -196,6 +208,15 @@
 
   .services-grid {
     grid-template-columns: 1fr;
+  }
+
+  .service-card {
+    padding: 22px 18px;
+  }
+
+  .skill-label {
+    gap: 16px;
+    align-items: baseline;
   }
 
   .about-avatar-placeholder {

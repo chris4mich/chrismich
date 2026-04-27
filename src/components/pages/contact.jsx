@@ -3,6 +3,8 @@ import "./contact.css";
 
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -15,9 +17,47 @@ function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSending(true);
+    setError("");
+
+    const formData = new FormData();
+    formData.append("access_key", "bbaa1e19-3051-4608-bae1-91790d4286c4");
+    formData.append("from_name", "MD-MA Portfolio");
+    formData.append("subject", `Portfolio contact: ${form.subject}`);
+    formData.append("name", `${form.firstName} ${form.lastName}`);
+    formData.append("firstName", form.firstName);
+    formData.append("lastName", form.lastName);
+    formData.append("email", form.email);
+    formData.append("topic", form.subject);
+    formData.append("message", form.message);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error(data.message || "Message could not be sent.");
+      }
+
+      setSubmitted(true);
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err) {
+      setError("Message could not be sent. Please try again.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -30,10 +70,11 @@ function Contact() {
 
         {submitted ? (
           <p className="form-success">
-            ✓ Message sent! I'll get back to you soon.
+            Message sent! I'll get back to you soon.
           </p>
         ) : (
           <form className="contact-form" onSubmit={handleSubmit}>
+            {error && <p className="form-error">{error}</p>}
             <div className="form-row">
               <div className="form-group">
                 <label htmlFor="firstName">First Name</label>
@@ -102,8 +143,12 @@ function Contact() {
               />
             </div>
 
-            <button type="submit" className="contact-submit-btn">
-              Send Message
+            <button
+              type="submit"
+              className="contact-submit-btn"
+              disabled={isSending}
+            >
+              {isSending ? "Sending..." : "Send Message"}
             </button>
           </form>
         )}
