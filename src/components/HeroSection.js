@@ -1,16 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useDeviceMotionEffect from "../hooks/useDeviceMotionEffect";
 import "./HeroSection.css";
 
 function HeroSection() {
+  const { canPrompt, requestAccess, targetRef } = useDeviceMotionEffect();
+
   return (
-    <div className="hero-container">
+    <div className="hero-container" ref={targetRef}>
       <img
         className="hero_img"
         src="/images/herosection.jpg"
         alt="Abstract dark portfolio hero background for Christos Michalopoulos"
       />
       <div className="hero-noise" />
+      <div className="hero-motion-overlay" aria-hidden="true" />
 
       <div className="hero-content">
         <p className="hero-kicker">Full Stack Engineer / Patras, Greece</p>
@@ -36,6 +40,15 @@ function HeroSection() {
             Start Project
           </Link>
         </div>
+        {canPrompt && (
+          <button
+            className="hero-motion-button"
+            type="button"
+            onClick={requestAccess}
+          >
+            Enable Motion Effect
+          </button>
+        )}
       </div>
 
       <div className="hero-panel" aria-hidden="true">
