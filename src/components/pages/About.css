@@ -1,184 +1,184 @@
-/* ── About Page ─────────────────────────────────────────── */
 .about-page {
-  background: #838383;
+  position: relative;
   min-height: 100vh;
-  padding: 80px 20px;
+  padding: clamp(4rem, 8vw, 7rem) 20px;
   overflow-x: hidden;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(255, 63, 95, 0.08), transparent 28%),
+    linear-gradient(225deg, rgba(216, 255, 47, 0.08), transparent 34%),
+    #0d0d0d;
 }
 
-/* Hero banner */
+.about-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 58px 58px;
+}
+
+.about-hero,
+.about-skills {
+  position: relative;
+  z-index: 1;
+}
+
 .about-hero {
-  max-width: 900px;
-  margin: 0 auto 72px;
+  max-width: 1120px;
+  margin: 0 auto clamp(3.5rem, 7vw, 5rem);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
   align-items: center;
-  gap: 56px;
+  gap: clamp(32px, 7vw, 80px);
 }
 
-.about-hero-text h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  color: #111;
-  line-height: 1.15;
-  margin-bottom: 16px;
+.about-eyebrow {
+  display: inline-flex;
+  margin-bottom: 18px;
+  color: var(--signal);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.about-hero-text h1 span {
-  color: #4a4a4b;
+.about-hero-text h2 {
+  color: #fff;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900;
+  line-height: 0.96;
+  letter-spacing: 0;
+  margin-bottom: 24px;
+  text-transform: uppercase;
 }
 
-.about-hero-text p {
-  font-size: 1.05rem;
-  color: #1a1a1a;
-  line-height: 1.7;
-  float: none;
-  margin-bottom: 0;
+.about-copy {
+  display: grid;
+  gap: 18px;
+  max-width: 740px;
 }
 
-.about-avatar {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: 20px;
-  object-fit: cover;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-  background: #e5e7eb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+.about-copy p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1rem;
+  line-height: 1.85;
 }
 
 .about-avatar-placeholder {
+  position: relative;
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #ccccdb 0%, #6e6e6e 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 5rem;
-  color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 16px 48px rgba(24, 24, 24, 0.25);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background:
+    linear-gradient(145deg, rgba(216, 255, 47, 0.16), transparent 36%),
+    linear-gradient(315deg, rgba(55, 216, 255, 0.16), transparent 42%),
+    #151515;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.46);
+  transform: rotate(2deg);
 }
 
-/* Services / skills section */
-.about-services {
-  max-width: 900px;
-  margin: 0 auto 72px;
+.about-avatar-placeholder::before,
+.about-avatar-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transform: rotate(-10deg);
 }
 
-.about-services h2,
-.about-skills h2 {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #111;
-  margin-bottom: 32px;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.15);
+.about-avatar-placeholder::after {
+  inset: 24%;
+  border-color: rgba(216, 255, 47, 0.5);
+  transform: rotate(18deg);
+  animation: frame-spin 9s linear infinite;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+.about-avatar-grid {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(circle, black, transparent 72%);
 }
 
-.service-card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 28px 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  text-align: center;
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+.about-avatar-mark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #fff;
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  transform: translate(-50%, -50%);
+  text-shadow:
+    3px 0 0 rgba(255, 63, 95, 0.55),
+    -3px 0 0 rgba(55, 216, 255, 0.55);
 }
 
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-.service-icon {
-  font-size: 2.2rem;
-  margin-bottom: 14px;
-}
-
-.service-card h3 {
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #111;
-  margin-bottom: 8px;
-}
-
-.service-card p {
-  font-size: 0.9rem;
-  color: #6b7280;
-  line-height: 1.6;
-  float: none;
-  margin-bottom: 0;
-}
-
-/* Skills bars */
 .about-skills {
-  max-width: 900px;
+  max-width: 1120px;
   margin: 0 auto;
 }
 
-.skills-list {
+.about-skills h2 {
+  margin-bottom: 24px;
+  color: #fff;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.skills-cloud {
   display: flex;
-  flex-direction: column;
-  gap: 18px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+.skills-cloud span {
+  padding: 10px 13px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.82);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent),
+    rgba(255, 255, 255, 0.045);
+  font-size: 0.82rem;
+  font-weight: 800;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
-.skill-label {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #111;
+.skills-cloud span:hover {
+  color: var(--signal);
+  border-color: rgba(216, 255, 47, 0.52);
+  transform: translateY(-3px);
 }
 
-.skill-track {
-  height: 8px;
-  background: #e5e7eb;
-  border-radius: 99px;
-  overflow: hidden;
-}
-
-.skill-fill {
-  height: 100%;
-  border-radius: 99px;
-  background: linear-gradient(135deg, #ccccdb 0%, #6e6e6e 100%);
-  /* linear-gradient(90deg, #6366f1, #a78bfa); */
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .about-page {
-    padding: 48px 16px;
+@keyframes frame-spin {
+  to {
+    transform: rotate(378deg);
   }
+}
 
+@media (max-width: 820px) {
   .about-hero {
     grid-template-columns: 1fr;
-    gap: 32px;
-    margin-bottom: 48px;
     text-align: center;
   }
 
-  .about-hero-text h1 {
-    font-size: 2.2rem;
-  }
-
-  .about-hero-text p {
-    font-size: 1rem;
+  .about-copy {
+    margin-inline: auto;
   }
 
   .about-avatar-placeholder {
@@ -186,41 +186,21 @@
     margin: 0 auto;
   }
 
-  .services-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+  .about-skills h2 {
+    text-align: center;
   }
 
-  .about-services,
-  .about-skills {
-    margin-bottom: 48px;
+  .skills-cloud {
+    justify-content: center;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 520px) {
   .about-page {
-    padding: 36px 14px;
-  }
-
-  .about-hero-text h1 {
-    font-size: 1.8rem;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    padding: 22px 18px;
-  }
-
-  .skill-label {
-    gap: 16px;
-    align-items: baseline;
+    padding: 3.5rem 14px;
   }
 
   .about-avatar-placeholder {
-    font-size: 3rem;
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 3;
   }
 }

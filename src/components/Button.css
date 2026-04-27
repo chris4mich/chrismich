@@ -1,43 +1,52 @@
 :root {
-    --primary: #fff;
-  }
-  
-  .btn {
-    padding: 8px 20px;
-    border-radius: 2px;
-    outline: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .btn--primary {
-    background-color: var(--primary);
-    color: #242424;
-    border: 1px solid var(--primary);
-  }
-  
-  .btn--outline {
-    background-color: transparent;
-    color: #fff;
-    padding: 8px 20px;
-    border: 1px solid var(--primary);
-    transition: all 0.3s ease-out;
-  }
-  
-  .btn--medium {
-    padding: 8px 20px;
-    font-size: 18px;
-  }
-  
-  .btn--large {
-    padding: 12px 26px;
-    font-size: 20px;
-  }
-  
-  .btn--large:hover,
-  .btn--medium:hover {
-    transition: all 0.3s ease-out;
-    background: #fff;
-    color: #242424;
-    transition: 250ms;
-  }
+  --primary: #fff;
+}
+
+.btn-mobile {
+  text-decoration: none;
+}
+
+.btn {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.btn--primary {
+  background-color: var(--primary);
+  color: #080808;
+  border: 1px solid var(--primary);
+}
+
+.btn--outline {
+  color: var(--signal);
+  background: rgba(216, 255, 47, 0.08);
+  border: 1px solid rgba(216, 255, 47, 0.55);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn--medium {
+  font-size: 0.78rem;
+}
+
+.btn--large {
+  padding: 0 24px;
+  font-size: 0.95rem;
+}
+
+.btn--large:hover,
+.btn--medium:hover {
+  color: #080808;
+  background: var(--signal);
+  transform: translateY(-2px);
+}

@@ -24,7 +24,7 @@ function Contact() {
 
     const formData = new FormData();
     formData.append("access_key", "bbaa1e19-3051-4608-bae1-91790d4286c4");
-    formData.append("from_name", "MD-MA Portfolio");
+    formData.append("from_name", "CM Portfolio");
     formData.append("subject", `Portfolio contact: ${form.subject}`);
     formData.append("name", `${form.firstName} ${form.lastName}`);
     formData.append("firstName", form.firstName);
@@ -63,10 +63,53 @@ function Contact() {
   return (
     <div className="contact-page">
       <div className="contact-card">
-        <h1>Get in Touch</h1>
+        <span className="contact-eyebrow">Contact</span>
+        <h2>Let's Build Something Sharp</h2>
         <p className="contact-subtitle">
-          Have a project in mind? I'd love to hear about it.
+          I am open to meaningful collaborations, challenging web projects, and
+          opportunities where clean engineering, strong UI, and real product
+          value matter.
         </p>
+
+        <div className="contact-actions">
+          <a className="contact-link contact-link--primary" href="mailto:chrs.mich@gmail.com">
+            Contact Me
+          </a>
+          <a
+            className="contact-link"
+            href="https://www.linkedin.com/in/christos4michalopoulos/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View LinkedIn
+          </a>
+          <a
+            className="contact-link"
+            href="https://github.com/chris4mich"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View GitHub
+          </a>
+        </div>
+
+        <div className="contact-meta">
+          <a href="mailto:chrs.mich@gmail.com">chrs.mich@gmail.com</a>
+          <a
+            href="https://www.linkedin.com/in/christos4michalopoulos/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            linkedin.com/in/christos4michalopoulos
+          </a>
+          <a
+            href="https://github.com/chris4mich"
+            target="_blank"
+            rel="noreferrer"
+          >
+            github.com/chris4mich
+          </a>
+        </div>
 
         {submitted ? (
           <p className="form-success">
@@ -124,7 +167,7 @@ function Contact() {
                 onChange={handleChange}
                 required
               >
-                <option value="">Select a topic…</option>
+                <option value="">Select a topic...</option>
                 <option value="project">New Project</option>
                 <option value="collaboration">Collaboration</option>
                 <option value="general">General Enquiry</option>
@@ -136,7 +179,7 @@ function Contact() {
               <textarea
                 id="message"
                 name="message"
-                placeholder="Tell me about your project…"
+                placeholder="Tell me about your project..."
                 value={form.message}
                 onChange={handleChange}
                 required

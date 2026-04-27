@@ -1,101 +1,70 @@
 import React from "react";
 import "./About.css";
 
-const services = [
-  {
-    icon: "⚛️",
-    title: "Frontend Development",
-    desc: "Modern React applications with clean architecture and reusable components.",
-  },
-  {
-    icon: "🧠",
-    title: "System Design",
-    desc: "Scalable frontend structures and maintainable codebases for complex apps.",
-  },
-  {
-    icon: "🔗",
-    title: "API Integration",
-    desc: "Connecting frontend systems with backend services efficiently.",
-  },
-  {
-    icon: "⚡",
-    title: "Performance Optimization",
-    desc: "Improving speed, responsiveness, and user experience.",
-  },
-  {
-    icon: "🧩",
-    title: "Component Libraries",
-    desc: "Building reusable UI systems and design consistency.",
-  },
-  {
-    icon: "🚀",
-    title: "Product Development",
-    desc: "From idea to production-ready web applications.",
-  },
-];
-
 const skills = [
-  { label: "React / Frontend", pct: 90 },
-  { label: "JavaScript / TypeScript", pct: 88 },
-  { label: "UI Architecture", pct: 85 },
-  { label: "API Integration", pct: 82 },
-  { label: "Performance Optimization", pct: 78 },
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Node.js",
+  "Java",
+  "Spring Boot",
+  ".NET",
+  "REST APIs",
+  "SQL Databases",
+  "UI Architecture",
+  "Component Systems",
+  "Form-driven Applications",
+  "API Integrations",
+  "Refactoring",
+  "Performance Optimization",
 ];
 
 function About() {
   return (
     <div className="about-page">
-      {/* Hero */}
       <section className="about-hero">
         <div className="about-hero-text">
-          <h1>
-            Full Stack <span>Engineer</span>
-          </h1>
-          <p>
-            I'm Chris — a Full Stack Engineer based in Greece, specializing in
-            modern web applications with React. I build scalable,
-            high-performance interfaces and focus on clean architecture,
-            reusable components, and intuitive user experiences.
-            <br />
-            <br />
-            I’ve worked on complex business applications involving form
-            builders, dynamic data flows, and enterprise-level frontend systems.
-            My goal is to deliver products that are reliable, fast, and easy to
-            use.
-          </p>
+          <span className="about-eyebrow">About Me</span>
+          <h2>About Me</h2>
+          <div className="about-copy">
+            <p>
+              I am Christos Michalopoulos, a Full Stack Engineer based in
+              Patras, Greece. I build modern web applications with a strong
+              focus on React, TypeScript, clean architecture, reusable
+              components, and reliable API integrations.
+            </p>
+            <p>
+              My experience combines frontend development, backend logic, REST
+              APIs, database-driven systems, and a strong technical background
+              in network infrastructure. This gives me a practical, end-to-end
+              view of how real systems should be designed, built, connected,
+              and maintained.
+            </p>
+            <p>
+              I enjoy transforming complex business logic into simple, clear,
+              and maintainable code. I care about user experience, developer
+              experience, performance, structure, and writing software that can
+              grow without becoming fragile.
+            </p>
+            <p>
+              My goal is to build digital products that feel sharp, responsive,
+              useful, and reliable - products where imagination becomes reality
+              through solid engineering.
+            </p>
+          </div>
         </div>
 
-        <div className="about-avatar-placeholder">💻</div>
-      </section>
-
-      {/* Services */}
-      <section className="about-services">
-        <h2>What I Do</h2>
-        <div className="services-grid">
-          {services.map((s) => (
-            <div className="service-card" key={s.title}>
-              <div className="service-icon">{s.icon}</div>
-              <h3>{s.title}</h3>
-              <p>{s.desc}</p>
-            </div>
-          ))}
+        <div className="about-avatar-placeholder" aria-hidden="true">
+          <span className="about-avatar-grid" />
+          <span className="about-avatar-mark">CM</span>
         </div>
       </section>
 
-      {/* Skills */}
       <section className="about-skills">
         <h2>Skills</h2>
-        <div className="skills-list">
-          {skills.map((sk) => (
-            <div className="skill-item" key={sk.label}>
-              <div className="skill-label">
-                <span>{sk.label}</span>
-                <span>{sk.pct}%</span>
-              </div>
-              <div className="skill-track">
-                <div className="skill-fill" style={{ width: `${sk.pct}%` }} />
-              </div>
-            </div>
+        <div className="skills-cloud">
+          {skills.map((skill) => (
+            <span key={skill}>{skill}</span>
           ))}
         </div>
       </section>
