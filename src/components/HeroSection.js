@@ -5,13 +5,23 @@ import "./HeroSection.css";
 function HeroSection() {
   return (
     <div className="hero-container">
-      <img
-        className="hero_img"
-        src="/images/herosection.jpg"
-        alt="Abstract dark portfolio hero background for Christos Michalopoulos"
-      />
-      <div className="hero-wave-overlay" aria-hidden="true" />
-      <div className="hero-noise" />
+      <picture className="hero-picture">
+        <source
+          media="(max-width: 768px)"
+          srcSet="/images/herosection-mobile.jpg"
+          type="image/jpeg"
+        />
+        <img
+          className="hero_img"
+          src="/images/herosection.jpg"
+          alt="Abstract dark portfolio hero background for Christos Michalopoulos"
+          aria-hidden="true"
+          decoding="async"
+          fetchPriority="high"
+          loading="eager"
+        />
+      </picture>
+      <div className="hero-noise" aria-hidden="true" />
 
       <div className="hero-content">
         <p className="hero-kicker">Full Stack Engineer / Patras, Greece</p>
