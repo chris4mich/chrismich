@@ -54,9 +54,18 @@ function About() {
           </div>
         </div>
 
-        <div className="about-avatar-placeholder" aria-hidden="true">
-          <span className="about-avatar-grid" />
-          <span className="about-avatar-mark">CM</span>
+        <div className="about-avatar-card">
+          <img
+            className="about-avatar-image"
+            src="/images/profilep.png"
+            alt="Christos Michalopoulos"
+            loading="lazy"
+            decoding="async"
+          />
+          <span className="about-avatar-grid" aria-hidden="true" />
+          <span className="about-avatar-mark" aria-hidden="true">
+            CM
+          </span>
         </div>
       </section>
 
