@@ -4,6 +4,7 @@ export const IDENTITY_MODE = "IDENTITY_MODE";
 export const TERMINAL_MODE = "TERMINAL_MODE";
 export const KONAMI_MODE = "KONAMI_MODE";
 export const PROJECT_MODE = "PROJECT_MODE";
+export const MOBILE_MODE = "MOBILE_MODE";
 
 const SECRET_PHRASE = "chrismich";
 const PROJECT_PHRASE = "hire christos";
@@ -13,6 +14,7 @@ const MODE_DURATIONS = {
   [TERMINAL_MODE]: 4000,
   [KONAMI_MODE]: 4000,
   [PROJECT_MODE]: 3000,
+  [MOBILE_MODE]: 3000,
 };
 const KONAMI_SEQUENCE = [
   "ArrowUp",
@@ -108,6 +110,10 @@ export function useEasterEggs() {
     activateMode(PROJECT_MODE, MODE_DURATIONS[PROJECT_MODE]);
   }, [activateMode]);
 
+  const activateMobileMode = useCallback(() => {
+    activateMode(MOBILE_MODE, MODE_DURATIONS[MOBILE_MODE]);
+  }, [activateMode]);
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === "Escape" && activeModeRef.current) {
@@ -168,18 +174,33 @@ export function useEasterEggs() {
       activateTerminalMode();
     };
 
+    const handleMobileModeEvent = () => {
+      if (activeModeRef.current) {
+        return;
+      }
+
+      if (navigator.vibrate) {
+        navigator.vibrate(25);
+      }
+
+      activateMobileMode();
+    };
+
     window.addEventListener("keydown", handleKeyDown);
     document.addEventListener("input", handleInput, true);
     window.addEventListener("cm:terminal-mode", handleTerminalModeEvent);
+    window.addEventListener("cm:mobile-mode", handleMobileModeEvent);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("input", handleInput, true);
       window.removeEventListener("cm:terminal-mode", handleTerminalModeEvent);
+      window.removeEventListener("cm:mobile-mode", handleMobileModeEvent);
     };
   }, [
     activateIdentityMode,
     activateKonamiMode,
+    activateMobileMode,
     activateProjectMode,
     activateTerminalMode,
     deactivate,
@@ -190,12 +211,14 @@ export function useEasterEggs() {
     document.body.classList.toggle("easter-terminal-mode", activeMode === TERMINAL_MODE);
     document.body.classList.toggle("easter-konami-mode", activeMode === KONAMI_MODE);
     document.body.classList.toggle("easter-project-mode", activeMode === PROJECT_MODE);
+    document.body.classList.toggle("easter-mobile-mode", activeMode === MOBILE_MODE);
 
     return () => {
       document.body.classList.remove("easter-identity-mode");
       document.body.classList.remove("easter-terminal-mode");
       document.body.classList.remove("easter-konami-mode");
       document.body.classList.remove("easter-project-mode");
+      document.body.classList.remove("easter-mobile-mode");
     };
   }, [activeMode]);
 
@@ -211,6 +234,7 @@ export function useEasterEggs() {
     activateTerminalMode,
     activateKonamiMode,
     activateProjectMode,
+    activateMobileMode,
     deactivate,
   };
 }

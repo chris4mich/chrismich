@@ -290,6 +290,52 @@
   animation: easter-toast-in 0.24s ease both;
 }
 
+.easter-mobile-sheet {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  z-index: 10000;
+  display: grid;
+  gap: 7px;
+  max-width: 460px;
+  margin-inline: auto;
+  padding: 18px 18px 20px;
+  overflow: hidden;
+  border: 1px solid rgba(55, 216, 255, 0.28);
+  border-radius: 8px;
+  color: rgba(247, 247, 242, 0.88);
+  background:
+    linear-gradient(135deg, rgba(216, 255, 47, 0.1), transparent 44%),
+    rgba(7, 8, 8, 0.94);
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.56),
+    0 0 30px rgba(55, 216, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  animation: easter-mobile-sheet-in 0.24s ease both;
+}
+
+.easter-mobile-sheet__accent {
+  width: 54px;
+  height: 2px;
+  margin-bottom: 4px;
+  background: linear-gradient(90deg, var(--signal), var(--cyan));
+  box-shadow: 0 0 18px rgba(55, 216, 255, 0.18);
+}
+
+.easter-mobile-sheet p {
+  margin: 0;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.easter-mobile-sheet p:last-child {
+  color: var(--signal);
+  font-weight: 700;
+}
+
 body.easter-terminal-mode::after,
 body.easter-konami-mode::after {
   content: "";
@@ -318,6 +364,11 @@ body.easter-identity-mode .hero-kicker {
   color: var(--cyan);
 }
 
+body.easter-mobile-mode .hero-panel__code {
+  color: var(--signal);
+  text-shadow: 0 0 18px rgba(216, 255, 47, 0.16);
+}
+
 body.easter-project-mode a[href="/contact"],
 body.easter-project-mode .hero-action--ghost,
 body.easter-project-mode .contact-link--primary,
@@ -336,6 +387,17 @@ body.easter-project-mode .contact-submit-btn {
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes easter-mobile-sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -406,6 +468,7 @@ body.easter-project-mode .contact-submit-btn {
 @media (prefers-reduced-motion: reduce) {
   .easter-terminal__body p,
   .easter-toast,
+  .easter-mobile-sheet,
   .easter-konami-card__chips span,
   body.easter-project-mode a[href="/contact"],
   body.easter-project-mode .hero-action--ghost,

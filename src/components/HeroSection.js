@@ -1,11 +1,44 @@
-import React, { useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./HeroSection.css";
 
+const LONG_PRESS_DURATION = 1200;
+
+function isTouchLikeDevice() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  const coarsePointer = window.matchMedia
+    ? window.matchMedia("(hover: none) and (pointer: coarse)").matches
+    : false;
+
+  return coarsePointer || navigator.maxTouchPoints > 0;
+}
+
 function HeroSection() {
   const panelClickTimesRef = useRef([]);
+  const longPressTimerRef = useRef(null);
+  const suppressNextClickRef = useRef(false);
 
-  const handleSecretPanelClick = () => {
+  const clearLongPressTimer = useCallback(() => {
+    if (longPressTimerRef.current) {
+      window.clearTimeout(longPressTimerRef.current);
+      longPressTimerRef.current = null;
+    }
+  }, []);
+
+  const handleSecretPanelClick = (event) => {
+    if (suppressNextClickRef.current) {
+      suppressNextClickRef.current = false;
+      event.preventDefault();
+      return;
+    }
+
+    if (isTouchLikeDevice()) {
+      return;
+    }
+
     const now = Date.now();
 
     panelClickTimesRef.current = [...panelClickTimesRef.current, now].filter(
@@ -17,6 +50,37 @@ function HeroSection() {
       window.dispatchEvent(new CustomEvent("cm:terminal-mode"));
     }
   };
+
+  const handleSecretPanelPointerDown = (event) => {
+    if (!isTouchLikeDevice() || event.pointerType === "mouse") {
+      return;
+    }
+
+    clearLongPressTimer();
+
+    longPressTimerRef.current = window.setTimeout(() => {
+      suppressNextClickRef.current = true;
+      window.dispatchEvent(new CustomEvent("cm:mobile-mode"));
+      clearLongPressTimer();
+    }, LONG_PRESS_DURATION);
+  };
+
+  const cancelSecretPanelLongPress = () => {
+    clearLongPressTimer();
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      clearLongPressTimer();
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearLongPressTimer();
+    };
+  }, [clearLongPressTimer]);
 
   return (
     <div className="hero-container">
@@ -71,6 +135,10 @@ function HeroSection() {
           className="hero-panel__code"
           title="System access"
           onClick={handleSecretPanelClick}
+          onPointerDown={handleSecretPanelPointerDown}
+          onPointerUp={cancelSecretPanelLongPress}
+          onPointerCancel={cancelSecretPanelLongPress}
+          onPointerLeave={cancelSecretPanelLongPress}
         >
           CM / 2026
         </span>

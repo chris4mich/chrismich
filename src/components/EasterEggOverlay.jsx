@@ -2,6 +2,7 @@ import React from "react";
 import {
   IDENTITY_MODE,
   KONAMI_MODE,
+  MOBILE_MODE,
   PROJECT_MODE,
   TERMINAL_MODE,
 } from "../hooks/useEasterEggs";
@@ -99,6 +100,17 @@ function KonamiOverlay() {
   );
 }
 
+function MobileOverlay() {
+  return (
+    <div className="easter-mobile-sheet" role="status" aria-live="polite">
+      <span className="easter-mobile-sheet__accent" aria-hidden="true" />
+      <p>Pocket build detected.</p>
+      <p>Mobile interface optimized.</p>
+      <p>CM Pocket Mode enabled.</p>
+    </div>
+  );
+}
+
 function EasterEggOverlay({ activeMode }) {
   if (!activeMode) {
     return null;
@@ -122,6 +134,10 @@ function EasterEggOverlay({ activeMode }) {
 
   if (activeMode === KONAMI_MODE) {
     return <KonamiOverlay />;
+  }
+
+  if (activeMode === MOBILE_MODE) {
+    return <MobileOverlay />;
   }
 
   return null;

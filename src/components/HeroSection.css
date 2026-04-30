@@ -229,6 +229,8 @@
   grid-column: 1 / -1;
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
 .hero-marquee {
@@ -359,7 +361,12 @@
   }
 
   .hero-panel {
-    display: none;
+    right: 18px;
+    bottom: 76px;
+    display: grid;
+    grid-template-columns: 42px auto;
+    gap: 9px;
+    font-size: 0.68rem;
   }
 
   .hero-marquee {
