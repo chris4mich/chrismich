@@ -227,6 +227,8 @@
 
 .hero-panel__code {
   grid-column: 1 / -1;
+  cursor: pointer;
+  user-select: none;
 }
 
 .hero-marquee {

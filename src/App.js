@@ -7,8 +7,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Portfolio from "./components/pages/Work";
 import About from "./components/pages/About";
 import Contact from "./components/pages/contact";
+import EasterEggOverlay from "./components/EasterEggOverlay";
+import { useEasterEggs } from "./hooks/useEasterEggs";
 
 function App() {
+  const { activeMode, deactivate } = useEasterEggs();
+
   return (
     <Router>
       <div className="app-shell">
@@ -23,6 +27,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <EasterEggOverlay activeMode={activeMode} onClose={deactivate} />
     </Router>
   );
 }

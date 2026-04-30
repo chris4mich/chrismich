@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./HeroSection.css";
 
 function HeroSection() {
+  const panelClickTimesRef = useRef([]);
+
+  const handleSecretPanelClick = () => {
+    const now = Date.now();
+
+    panelClickTimesRef.current = [...panelClickTimesRef.current, now].filter(
+      (clickTime) => now - clickTime <= 3000
+    );
+
+    if (panelClickTimesRef.current.length >= 5) {
+      panelClickTimesRef.current = [];
+      window.dispatchEvent(new CustomEvent("cm:terminal-mode"));
+    }
+  };
+
   return (
     <div className="hero-container">
       <picture className="hero-picture">
@@ -52,7 +67,13 @@ function HeroSection() {
       <div className="hero-panel" aria-hidden="true">
         <span className="hero-panel__line" />
         <span className="hero-panel__dot" />
-        <span className="hero-panel__code">CM / 2026</span>
+        <span
+          className="hero-panel__code"
+          title="System access"
+          onClick={handleSecretPanelClick}
+        >
+          CM / 2026
+        </span>
       </div>
 
       <div className="hero-marquee" aria-hidden="true">
