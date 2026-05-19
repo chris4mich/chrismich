@@ -21,7 +21,7 @@ function Footer() {
             </Link>
           </div>
           <small className="website-rights">
-            Chris Mich (c) {getCurrentYear()}
+            © {getCurrentYear()} Christos Michalopoulos
           </small>
           <div className="social-icons">
             <a

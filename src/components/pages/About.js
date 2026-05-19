@@ -28,10 +28,10 @@ function About() {
           <h2>About Me</h2>
           <div className="about-copy">
             <p>
-              I am Christos Michalopoulos, a Full Stack Engineer based in
-              Patras, Greece. I build modern web applications with a strong
-              focus on React, TypeScript, clean architecture, reusable
-              components, and reliable API integrations.
+              Christos Michalopoulos is a Full Stack
+              Software Engineer based in Patras, Greece. I build modern web
+              applications with a strong focus on React, TypeScript, clean
+              architecture, reusable components, and reliable API integrations.
             </p>
             <p>
               My experience combines frontend development, backend logic, REST
